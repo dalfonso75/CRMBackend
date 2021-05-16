@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import Prospect from "./pages/Prospect";
+import Contact from "./pages/Contact";
+
+import { Sidebar } from "./Components/Sidebar/Sidebar";
+import { Navbar } from "./Components/Navbar/Navbar";
+
+import "./App.css";
+import useUser from "./Hooks/useUser";
 
 function App() {
+  const [showSide, setShowSide] = useState(false);
+  const { isLogged } = useUser();
+  if (!isLogged) {
+    return <Login />;
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar showSide={showSide} setShowSide={setShowSide} />
+      <Sidebar showSide={showSide} />
+      <div className="main">
+        <Switch>
+          <Route path="/" exact={true} component={Home} />
+          <Route path="/home" exact={true} component={Home} />
+          <Route path="/prospect" exact={true} component={Prospect} />
+          <Route path="/contact" exact={true} component={Contact} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
