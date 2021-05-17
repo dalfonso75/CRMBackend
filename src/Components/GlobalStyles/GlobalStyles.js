@@ -7,6 +7,16 @@ const size = {
   laptopL: "1440px",
   desktop: "2560px",
 };
+const palleteColors= {
+  colorP:'#825236',
+  colorS:'#EEB62E',
+  colorT:'#171C24',
+  colorF:"#222B36",
+  colorAzulOsc:"#161C24",
+  colorAmarillo:"#FDA92D",
+  colorAmarilloTransp:"RGBA(253,169,45,0.3)",
+  colorCafe:"rgb(182, 104, 22)",
+}
 export const Device = {
   mobileS: `(max-width: ${size.mobileS})`,
   mobileM: `(max-width: ${size.mobileM})`,
@@ -17,10 +27,11 @@ export const Device = {
   desktop: `(max-width: ${size.desktop})`,
   desktopL: `(max-width: ${size.desktop})`,
 };
+
 export const Colors = {
   background: {
     login: "#515966",
-    dashboard: "#EDEEF2",
+    dashboard: `${palleteColors.colorT}`,
   },
   cardLogin: {
     background: "#2C2F35",
@@ -34,9 +45,10 @@ export const Colors = {
     textErrorColor:"red",
   },
   sidebar: {
-    background: "#21252B",
+    background: `${palleteColors.colorAzulOsc}`,
     color: "#eaecef",
     BackgroundHoverLink:"#282C34",
+    BackgroundActiveLink:`${palleteColors.colorAmarilloTransp}`,
   },
   navbar: {
     background: "#21252B",
@@ -44,17 +56,21 @@ export const Colors = {
     boxshadow:"#999",
   },
   cardDashboard: {
-    cardHeaderBackground: "#21252B",
+    cardHeaderBackground: `${palleteColors.colorF}`,
     cardHeaderColor: "#FFFFFF",
-    cardBodyBackground:"#FFFFFF",
-    cardBodyColor: "#000000",
+    cardBodyBackground:`${palleteColors.colorF}`,
+    cardBodyColor: "#FFFFFF",
   },
   boton: {
-    background: "#21252B",
-    Hoverbackground: "#21252B",
-    color: "#FFFFFF",
+    background: `${palleteColors.colorS}`,
+    Hoverbackground: `${palleteColors.colorP}`,
+    color: "rgb(33, 43, 54)",
   },
   form: {
-    color: "red",
+    Errorcolor: "#C26C75",
+    labelColor:"#4C5967",
+    labelColorFocus:`${palleteColors.colorS}`,
+    borderIpunt:"#4C5967",
+    borderIpuntFocus:`${palleteColors.colorS}`,
   }
 };

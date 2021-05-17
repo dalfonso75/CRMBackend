@@ -22,7 +22,7 @@ function App() {
     <Router>
       <Navbar showSide={showSide} setShowSide={setShowSide} />
       <Sidebar showSide={showSide} />
-      <div className="main">
+      <div className="main" onClick={() => {setShowSide(false);}}>
         <Switch>
           <Route path="/" exact={true} component={Home} />
           <Route path="/home" exact={true} component={Home} />
