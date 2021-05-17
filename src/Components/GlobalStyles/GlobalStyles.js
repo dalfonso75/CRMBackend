@@ -47,13 +47,13 @@ export const Colors = {
   sidebar: {
     background: `${palleteColors.colorAzulOsc}`,
     color: "#eaecef",
+    colorHover:`${palleteColors.colorAmarillo}`,
     BackgroundHoverLink:"#282C34",
     BackgroundActiveLink:`${palleteColors.colorAmarilloTransp}`,
   },
   navbar: {
-    background: "#21252B",
+    background: `${palleteColors.colorAzulOsc}`,
     color: "#FFFFFF",
-    boxshadow:"#999",
   },
   cardDashboard: {
     cardHeaderBackground: `${palleteColors.colorF}`,
@@ -69,8 +69,8 @@ export const Colors = {
   form: {
     Errorcolor: "#C26C75",
     labelColor:"#4C5967",
-    labelColorFocus:`${palleteColors.colorS}`,
+    labelColorFocus:`${palleteColors.colorAmarillo}`,
     borderIpunt:"#4C5967",
-    borderIpuntFocus:`${palleteColors.colorS}`,
+    borderIpuntFocus:`${palleteColors.colorAmarillo}`,
   }
 };

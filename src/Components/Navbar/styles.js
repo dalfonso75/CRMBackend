@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Device, Colors } from '../GlobalStyles/GlobalStyles';
-import { GiHamburgerMenu as logo } from 'react-icons/gi';
+import { AiOutlineMenuUnfold as logo } from "react-icons/ai";
 
 export const NavbarHeader = styled.header`
   position:fixed;
@@ -11,7 +11,7 @@ export const NavbarHeader = styled.header`
   align-items:center;
   padding: 10px 30px;
   background: ${Colors.navbar.background};
-  box-shadow: 0px 2px 15px ${Colors.navbar.boxshadow};
+  border-bottom:1px solid ${Colors.form.borderIpunt};
   z-index:99;
   & p {
     margin:0;

@@ -9,7 +9,7 @@ export const Navbar = ({ showSide, setShowSide }) => {
           setShowSide(!showSide);
         }}
       />
-      <p>{dataUser.userName +' ' +dataUser.userLastName }</p>
+      <p>{dataUser ? dataUser.userName: 'Nombre'}</p>
     </NavbarHeader>
   );
 };

@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Prospect from "./pages/Prospect";
-import Contact from "./pages/Contact";
+import Comercial from "./pages/Comercial";
+import Perfil from "./pages/Perfil";
 
 import { Sidebar } from "./Components/Sidebar/Sidebar";
 import { Navbar } from "./Components/Navbar/Navbar";
@@ -27,7 +28,8 @@ function App() {
           <Route path="/" exact={true} component={Home} />
           <Route path="/home" exact={true} component={Home} />
           <Route path="/prospect" exact={true} component={Prospect} />
-          <Route path="/contact" exact={true} component={Contact} />
+          <Route path="/comercial" exact={true} component={Comercial} />
+          <Route path="/perfil" exact={true} component={Perfil} />
         </Switch>
       </div>
     </Router>

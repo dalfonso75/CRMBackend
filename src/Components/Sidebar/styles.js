@@ -20,32 +20,29 @@ export const Sidenav = styled.div`
 
 export const Sideul = styled.ul`
   padding: 0;
-  & li {
+  & div {
+    margin-top:0px;
+    margin-bottom:0px;
+    padding:0;
+
+  }
+  & div li {
     list-style-type: none;
-    margin: 10px 0;
+    margin: 5px 0;
+  }
+  & h3 {
+    margin:15px 0;
+    font-size:14px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color:#FFFFFF;
   }
 `;
-
-export const Link = styled(LinkRouter)`
-  color:${Colors.sidebar.color};
+export const Linkperfil = styled(LinkRouter)`
   text-decoration: none;
-  font-size: 16px;
-  display: block;
-  padding: 10px 15px;
-  border-radius:6px 0 0 6px;
-  &:hover {
-    background: #282c34;
-    color: ${Colors.sidebar.color};
-  }
-  & svg {
-    margin-right: 10px;
-  }
-  &.active {
-    background: ${Colors.sidebar.BackgroundActiveLink};
-    border-right:4px solid ${Colors.sidebar.BackgroundActiveLink};
-  }
+  padding-right:20px;
 `;
-
 export const ContainerRowPerfil = styled.div`
   margin:40px 0 20px 0;
   padding:0;
@@ -74,27 +71,59 @@ export const AvatarPerfil = styled.img`
   width: 50px;
 `;
 
-export const Linkperfil = styled(LinkRouter)`
+export const Link = styled(LinkRouter)`
+  color:${Colors.sidebar.color};
   text-decoration: none;
-  padding-right:20px;
+  font-size: 16px;
+  font-weight:400;
+  display: block;
+  padding: 10px 15px;
+  border-radius:6px 0 0 6px;
+  margin-bottom:0;
+  align-items:center;
+  &:hover {
+    background: #252C35;
+    color: ${Colors.sidebar.color};
+  }
+  & svg {
+    font-size:22px;
+    margin: 0 10px 3px 0;
+  }
+  &.active {
+    font-weight:700;
+    color:${Colors.sidebar.colorHover};
+    background: ${Colors.sidebar.BackgroundActiveLink};
+    border-right:4px solid ${Colors.sidebar.BackgroundActiveLink};
+    & svg {
+      
+    }
+  }
 `;
-
 export const CerraSesion = styled.div`
+  padding: 0;
+  width:86%;
   position:absolute;
   bottom:70px;
   color: ${Colors.sidebar.color};
-  & a {
+  & div {
+    margin-top:0px;
+    margin-bottom:0px;
+    padding:0;
+  }
+  & div a {
     text-decoration: none;
     font-size: 16px;
     display: block;
     padding: 10px 15px;
-    border-radius: 6px;
+    border-radius:6px 0 0 6px;
     cursor: pointer;
     &:hover{
-      background: ${Colors.sidebar.BackgroundHoverLink};
+      background: #252C35;
+      color: ${Colors.sidebar.color};
     }
     & svg {
-      margin-left:5px;
+      font-size:22px;
+      margin: 0 10px 3px 0;
     }
   }
 `;

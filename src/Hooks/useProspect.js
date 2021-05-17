@@ -6,11 +6,12 @@ export default function useProspect() {
   // const { token, setToken } = useContext(Context);
   const { user, setUser } = useContext(Context);
   const [state, setState] = useState({ loading: false, error: null, data: null});
+
   const getAll = useCallback(
     () => {
       // console.log(user.sign);
       setState({ loading: true, error: null });
-      prospectService.getAll( user.sign )
+      prospectService.getAll(( user ? user.sign : ''))
         .then((data) => {
           // console.log(data);
           setState({ loading: false, error: null, data: data.body });
@@ -22,11 +23,12 @@ export default function useProspect() {
     },
     [setUser]
   );
+  
   const create = useCallback(
     (newObject) => {
       newObject.userId = user.userId;
       setState({ loading: true, error: false });
-      prospectService.create( user.sign, newObject )
+      prospectService.create(( user ? user.sign : ''), newObject )
         .then((data) => {
           // console.log(data);
           setState({ loading: false, error: null, data: data });

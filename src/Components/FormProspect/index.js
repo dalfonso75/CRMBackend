@@ -227,12 +227,3 @@ export const FormProspect = () => {
     </>
   );
 };
-
-
- /* ${FormPInput}:focus ~ &, ${FormPInput}:not(:focus):valid ~ & {
-    top: -20px;
-    left: 0;
-    color: #03e9f4;
-    font-size: 12px;
-    background-color:#222B36;
-  } */
