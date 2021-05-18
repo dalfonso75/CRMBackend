@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
-// import MaterialTable from "material-table";
+import MaterialTable from "material-table";
 import PageLoading from "../PageLoadign/PageLoading";
 import useProspect from "../../Hooks/useProspect";
-import { ContainerCard, ContainerTable, TableCardHeader } from "./styles";
+import { ContainerCard, ContainerTable, TableCardHeader, TitleHeader, TableCardBody } from "./styles";
+import { FaUserEdit, FaUserShield, FaUserClock } from "react-icons/fa";
+import './style.css'
 const colums = [
-  {
-    title: "Id",
-    field: "prospectId",
-  },
   {
     title: "Nombre",
     field: "prospectName",
@@ -23,90 +21,92 @@ const colums = [
   {
     title: "Estado",
     field: "statusName",
+    render:(row)=><div className={row.statusName == 'Sentado' ? 'sentado statusNameRow': 
+                                  row.statusName == 'Sin asignar' ? 'sinAsignar statusNameRow':
+                                  row.statusName == 'Llamada'? 'llamada statusNameRow':
+                                  row.statusName == 'Cerrado'? 'cerrado statusNameRow':
+                                  row.statusName == 'statusNameRow'
+                                }>{row.statusName}</div>
   },
 ];
 export const TableProspect = () => {
   const { getAll, data, isLoading, hasError, success } = useProspect();
 
-  // const [datos, setDatos] = useState();
+  const [datos, setDatos] = useState();
 
-  const datos = [
-    {
-      prospectCellphone: '31247325600',
-      prospectId: "ECnELDJfCoMRTrQGPrgoD",
-      prospectLastName: "Alfonso",
-      prospectName: "Deiver Enrique",
-      statusName: "Sin asignar",
-    },
-    {
-      prospectCellphone: '31247325600',
-      prospectId: "ECnELDJfCoMRTrQGPrgoD",
-      prospectLastName: "Alfonso",
-      prospectName: "Deiver Enrique",
-      statusName: "Sin asignar",
-    },
-  ]
+  useEffect(() => {
+    getAll();
+  }, []);
 
-  console.log('--');
-  
-  
+  useEffect(() => {
+    if (data) {
+      setDatos(data);
+    }
+    console.log(data);
+  }, [data]);
+
   return (
     <>
-      {/* {isLoading && <PageLoading />} */}
-      {/* {!isLoading && ( */}
+      {isLoading && <PageLoading />}
+      {!isLoading && (
         <ContainerCard className="row d-flex justify-content-center">
           <ContainerTable className="card col-md-10">
             <TableCardHeader className="card-header">
-              Tabla de Prospectos
+              <TitleHeader>Tabla de Prospectos</TitleHeader>
             </TableCardHeader>
-            <div className="card-body">
-              <p>Tabla para ver todos los prospectos</p>
+            <TableCardBody className="card-body">
               <div className="row">
-                <div className="col">
-                  {/* {success && ( */}
-                    {/* <MaterialTable
+                <div className="col table-m">
+                  {success && (
+                    <MaterialTable
                       title="Prospectos"
                       columns={colums}
                       data={datos}
-                      // actions={[
-                      //   {
-                      //     icon: "edit",
-                      //     tooltip: "Editar Prospecto",
-                      //     onClick: (event, rowData) => {
-                      //       alert(
-                      //         `has presionado editar al prospecto ${rowData.prospectName}`
-                      //       );
-                      //     },
-                      //   },
-                      // ]}
-                      // options={{
-                      //   actionsColumnIndex: -1,
-                      // }}
-                      // localization={{
-                      //   header: {
-                      //     actions: "Acciones",
-                      //   },
-                      // }}
-                    /> */}
-                  {/* )}  */}
+                      actions={[
+                        {
+                          icon: () => <FaUserEdit />,
+                          tooltip: "Editar Prospecto",
+                          onClick: (event, rowData) => {
+                            alert(
+                              `has presionado editar al prospecto ${rowData.prospectName}`
+                            );
+                          },
+                        },
+                        {
+                          icon: () => <FaUserShield />,
+                          tooltip: "Editar Estado Prospecto",
+                          onClick: (event, rowData) => {
+                            alert(
+                              `has presionado editar al prospecto ${rowData.prospectName}`
+                            );
+                          },
+                        },
+                        {
+                          icon: () => <FaUserClock />,
+                          tooltip: "Ver Tracking",
+                          onClick: (event, rowData) => {
+                            alert(
+                              `has presionado editar al prospecto ${rowData.prospectName}`
+                            );
+                          },
+                        },
+                      ]}
+                      options={{
+                        actionsColumnIndex: -1,
+                      }}
+                      localization={{
+                        header: {
+                          actions: "Acciones",
+                        },
+                      }}
+                    />
+                  )}
                 </div>
               </div>
-            </div>
+            </TableCardBody>
           </ContainerTable>
         </ContainerCard>
-      {/* )} */}
+      )}
     </>
   );
 };
-// useEffect(() => {
-//   console.log('-');
-//   getAll()
-// }, []);
-
-// useEffect(() => {
-//   if (data) 
-//   {
-//     setDatos(data);
-//   }
-//   console.log(data);
-// }, [data]);

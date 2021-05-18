@@ -59,9 +59,11 @@ export const FormProspect = () => {
           "prospectCellPhone": data.prospectCellPhone, 
           "prospectEmail": data.prospectEmail, 
           "observation": data.observation, 
-          "statusId": "7SbAE5zx27Prfpl92pOFP"
+          "statusId": data.statusId,
+          "digitalSourceId": "H9Ee6DQ7cumAnjHmHkJfO",
         }
       };
+      console.log(data);
       create(data);
     }else {
       console.log(data);
@@ -152,10 +154,10 @@ export const FormProspect = () => {
                           className="form-control"
                         >
                           <option value="1" disabled selected></option>
-                          <option>Estado1</option>
-                          <option>Estado2</option>
-                          <option>Estado3</option>
-                          <option>Estado4</option>
+                          <option value="hjVZQez4R60tY6DBP8Sm-">Llamada</option>
+                          <option value="7SbAE5zx27Prfpl92pOFP">Cita</option>
+                          <option value="sDHVFGS-sjSzVNLIdZyvY">Sentado</option>
+                          <option value="kO9lZo_OsMaHdVA5dCClf">Cerrado</option>
                         </FormPSelect>
                         <FormPLabel>Estado de proceso:</FormPLabel>
                         <MessageError>{errors.statusId?.type === 'required' && "*El estado es obligatorio"}</MessageError>

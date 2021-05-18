@@ -1,0 +1,111 @@
+.table-m .MuiPaper-root {
+    background-color: transparent;
+    color: #FFFFFF;
+}
+
+
+.table-m .MuiInputBase-root {
+    color: #FFFFFF;
+}
+.table-m .MuiIconButton-root {
+    color: #FFFFFF;
+}
+.table-m .MuiIconButton-root.Mui-disabled {
+    color: rgba(255, 255, 255, 0.5);
+}
+.table-m .MuiInput-underline:before {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.42);
+}
+.table-m .MuiInput-underline:after{
+    border-bottom: 2px solid #FDA92D;
+}
+
+.table-m .MuiPaper-elevation2 {
+    box-shadow: none;
+}
+.table-m tr.MuiTableRow-root.MuiTableRow-head{
+    background-color: #333D49;
+    
+}
+.table-m .MTableHeader-header-13 {
+    background-color: transparent;
+    color: #8F9CA9;
+    font-weight: 700;
+    font-size: 14px;
+}
+.table-m .MuiTableSortLabel-root:focus,
+.table-m .MuiTableSortLabel-root:hover {
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+.table-m .MuiTableSortLabel-root.MuiTableSortLabel-active {
+    color: #FFFFFF
+}
+.table-m .MuiTableSortLabel-root.MuiTableSortLabel-active.MuiTableSortLabel-root.MuiTableSortLabel-active .MuiTableSortLabel-icon {
+    color: rgba(255, 255, 255, 0.54);
+    opacity: 1;
+}
+.table-m .MuiTableCell-root{
+    border: none;
+}
+.table-m tbody tr:hover {
+    background-color: #333d4957;
+}
+.table-m thead tr th:first-child {
+    border-radius:5px 0 0 5px;
+}
+.table-m thead tr th:last-child {
+    border-radius:0 5px 5px 0;
+}
+.table-m .Component-paginationToolbar-2 {
+    border-top: 2px solid #333D49;
+}
+.table-m .MuiSelect-icon {
+    color: #FFFFFF;
+}
+.table-m .MTablePaginationInner-root-14 span{
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.table-m .MuiTableCell-body {
+    color: #FFFFFF;
+}
+
+.table-m tbody td div button .MuiIconButton-label svg {
+    color: #FFFFFF;
+}
+.table-m tbody td div button .MuiIconButton-label svg:hover,
+.table-m tbody td div .MuiIconButton-root:hover svg {
+    color: #FDA92D;
+}
+.table-m tbody td div .MuiIconButton-root:hover
+{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.sentado {
+    background-color: #FDA92D;
+    color: #222B36;
+}
+.sinAsignar {
+    background-color: #FF4842;
+    color: #FFFFFF;
+}
+.llamada {
+    background-color: #2D64E3;
+    color: #FFFFFF;
+}
+.cerrado {
+    background-color: #54D62C;
+    color: #222B36;
+}
+.statusNameRow {
+    text-align: center;
+    border-radius: 8px;
+    font-weight: 700;
+    width: 120px;
+    font-size: 12.5px;
+    padding-top:3px;
+    padding-bottom:3px;
+}
