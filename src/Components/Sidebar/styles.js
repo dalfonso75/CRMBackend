@@ -4,6 +4,7 @@ import { NavLink as LinkRouter } from "react-router-dom";
 
 export const Sidenav = styled.div`
   margin-top:45px;
+  top:0;
   width: 300px;
   border-right:1px solid ${Colors.form.borderIpunt};
   background: ${Colors.sidebar.background};

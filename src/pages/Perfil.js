@@ -1,11 +1,10 @@
-import React from 'react'
+import React from "react";
+import { FormPerfil } from "../Components/FormPefil";
 
 const Perfil = () => {
-    return (
-        <div>
-            <h1>Hola soy Perfil</h1>
-        </div>
-    )
-}
+  return (
+    <FormPerfil/>
+  );
+};
 
-export default Perfil
+export default Perfil;

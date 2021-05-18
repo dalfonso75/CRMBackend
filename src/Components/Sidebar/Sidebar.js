@@ -8,7 +8,6 @@ import useUser from '../../Hooks/useUser'
 
 export const Sidebar = ({showSide}) => {
     const dataUser = JSON.parse(window.localStorage.getItem('user'));
-    console.log(dataUser);
     const {isLogged, logout} = useUser();
     return (
         <Sidenav className={showSide ? 'active' : ''}>
@@ -20,7 +19,7 @@ export const Sidebar = ({showSide}) => {
                             </div>
                             <div className="col-9">
                                 <h3>{dataUser ? dataUser.userName : 'Nombre' }</h3>
-                                <p>{dataUser ? dataUser.userName : 'Nombre' }</p>
+                                <p>{dataUser ? dataUser.roleName : 'Role' }</p>
                             </div>
                     </InternRowPerfil>
                 </Linkperfil>
