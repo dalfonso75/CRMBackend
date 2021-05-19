@@ -155,7 +155,7 @@ export const FormProspect = () => {
                         >
                           <option value="1" disabled selected></option>
                           <option value="hjVZQez4R60tY6DBP8Sm-">Llamada</option>
-                          <option value="7SbAE5zx27Prfpl92pOFP">Cita</option>
+                          <option value="ScE_14_PKWYSA4PHa-u6y">Cita</option>
                           <option value="sDHVFGS-sjSzVNLIdZyvY">Sentado</option>
                           <option value="kO9lZo_OsMaHdVA5dCClf">Cerrado</option>
                         </FormPSelect>

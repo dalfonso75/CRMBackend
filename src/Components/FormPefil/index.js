@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import userUsers from "../../Hooks/useUsers";
 import { ToastContainer, toast } from "react-toastify";
 import PageLoading from "../PageLoadign/PageLoading";
+import Gravatar from "../Gravatar";
 import {
   ContenedorPerfil,
   ContainerCardPerfil,
@@ -22,18 +23,28 @@ export const FormPerfil = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
     reset,
   } = useForm();
-  const { getUser, hasErrorGetUser, isLoadingGetUser, dataGetUser } =
+  const watchAllFields = watch();
+  const { 
+    getUser, 
+    hasErrorGetUser, 
+    isLoadingGetUser, 
+    dataGetUser,
+    updateUser,
+    isLoadingUpUser,
+    hasErrorUpUser,
+    dataUpUser,
+    } =
     userUsers();
   useEffect(() => {
     getUser();
-  }, []);
-
+  }, [dataUpUser]);
   useEffect(() => {
     if (hasErrorGetUser)
-      toast.error(`'🚀 El número de teléfono ya existe!'`, {
+      toast.error(`'🚀 Error en el servidor'`, {
         position: "top-right",
         autoClose: 1500,
         hideProgressBar: false,
@@ -42,11 +53,22 @@ export const FormPerfil = () => {
         draggable: true,
         progress: undefined,
       });
+      if (dataGetUser) {
+        toast.success("🚀Carga de Datos!", {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        reset();
+      }
   }, [hasErrorGetUser]);
   useEffect(() => {
-    if (dataGetUser) {
-      console.log(dataGetUser);
-      toast.success("🚀Carga de Datos!", {
+    if (hasErrorUpUser)
+      toast.error(`'🚀 Error al Actualizar los Datos!'`, {
         position: "top-right",
         autoClose: 1500,
         hideProgressBar: false,
@@ -55,12 +77,52 @@ export const FormPerfil = () => {
         draggable: true,
         progress: undefined,
       });
-      reset();
-    }
-  }, [dataGetUser]);
+      if (dataUpUser) {
+        toast.success("🚀Datos Actualizados!", {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        reset();
+      }
+  }, [hasErrorUpUser, dataUpUser]);
+
   const onSubmit = (data) => {
-    console.log(data);
+    if (data.password){
+      data = {
+        "userId": "",
+        "object":{
+          userCC: data.userCC,
+          userEmail: data.userEmail,
+          userLastName: data.userLastName,
+          userName: data.userName,
+          userPhone: data.userPhone,
+          userId: dataGetUser[0].userId,
+          active : "1",
+          password: data.password,
+        }
+      };
+    }else{
+      data = {
+        "userId": "",
+        "object":{
+          userCC: data.userCC,
+          userEmail: data.userEmail,
+          userLastName: data.userLastName,
+          userName: data.userName,
+          userPhone: data.userPhone,
+          userId: dataGetUser[0].userId,
+          active : "1",
+        }
+      };
+    }
+    updateUser(data);
   };
+
   return (
     <>
       <ToastContainer
@@ -74,20 +136,29 @@ export const FormPerfil = () => {
         draggable
         pauseOnHover
       />
-      <ContenedorPerfil className="row">
-        <ContPerfilCol className="col-md-5">
-          <ContainerCardPerfil className="row">
-            <FormPCardHeader className="card-header">
-              <TitleHeader>Mi Perfil</TitleHeader>
-            </FormPCardHeader>
-            <FormPCardBody className="card-body">
-              Hola
-            </FormPCardBody>
-          </ContainerCardPerfil>
-        </ContPerfilCol>
-        <div className="col-md-7">
-          {isLoadingGetUser && <PageLoading />}
-          {dataGetUser && (
+      {isLoadingGetUser && <PageLoading />}
+      {dataGetUser && (
+        <ContenedorPerfil className="row">
+          <ContPerfilCol className="col-lg-5">
+            <ContainerCardPerfil className="row">
+              {/* <FormPCardHeader className="card-header">
+              </FormPCardHeader> */}
+              <FormPCardBody className="card-body">
+                <div className="row justify-content-center">
+                  <Gravatar
+                    mameClass={"perfil"}
+                    email={watchAllFields.userEmail ? watchAllFields.userEmail :  dataGetUser[0].userEmail}
+
+                  />
+                  <p>{watchAllFields.userName ? watchAllFields.userName : dataGetUser[0].userName} {watchAllFields.userLastName ? watchAllFields.userLastName :  dataGetUser[0].userLastName}</p>
+                  <p>{watchAllFields.userEmail ? watchAllFields.userEmail : dataGetUser[0].userEmail}</p>
+                  <p>Télefono: {watchAllFields.userPhone ? watchAllFields.userPhone :  dataGetUser[0].userPhone}</p>
+                  <p>Cédula: {watchAllFields.userCC ? watchAllFields.userCC :  dataGetUser[0].userCC}</p>
+                </div>
+              </FormPCardBody>
+            </ContainerCardPerfil>
+          </ContPerfilCol>
+          <div className="col-lg-7">
             <ContainerCard className="row">
               <ContainerForm className="card col-md-10">
                 <FormPCardHeader className="card-header">
@@ -105,15 +176,17 @@ export const FormPerfil = () => {
                             <FormPInput
                               type="text"
                               className="form-control"
-                              defaultValue={dataGetUser ? dataGetUser[0].userName : ""}
-                              {...register("prospectName", {
+                              defaultValue={
+                                dataGetUser ? dataGetUser[0].userName : ""
+                              }
+                              {...register("userName", {
                                 required: true,
                                 maxLength: 80,
                               })}
                             ></FormPInput>
                             <FormPLabel>Nombres:</FormPLabel>
                             <MessageError>
-                              {errors.prospectName?.type === "required" &&
+                              {errors.userName?.type === "required" &&
                                 "*El nombre es obligatorio"}
                             </MessageError>
                           </ContainerField>
@@ -124,14 +197,14 @@ export const FormPerfil = () => {
                               defaultValue={
                                 dataGetUser ? dataGetUser[0].userLastName : ""
                               }
-                              {...register("prospectLastName", {
+                              {...register("userLastName", {
                                 required: true,
                                 maxLength: 80,
                               })}
                             />
                             <FormPLabel>Apellidos:</FormPLabel>
                             <MessageError>
-                              {errors.prospectLastName?.type === "required" &&
+                              {errors.userLastName?.type === "required" &&
                                 "*El apellido es obligatorio"}
                             </MessageError>
                           </ContainerField>
@@ -144,7 +217,7 @@ export const FormPerfil = () => {
                               defaultValue={
                                 dataGetUser ? dataGetUser[0].userPhone : ""
                               }
-                              {...register("prospectCellPhone", {
+                              {...register("userPhone", {
                                 required: true,
                                 minLength: 6,
                                 maxLength: 12,
@@ -154,15 +227,15 @@ export const FormPerfil = () => {
                               Teléfono:
                             </FormPLabel>
                             <MessageError>
-                              {errors.prospectCellPhone?.type === "required" &&
+                              {errors.userPhone?.type === "required" &&
                                 "*El celular es obligatorio"}
                             </MessageError>
                             <MessageError>
-                              {errors.prospectCellPhone?.type === "minLength" &&
+                              {errors.userPhone?.type === "minLength" &&
                                 "*El numero debe ser mayor a 6 dígitos"}
                             </MessageError>
                             <MessageError>
-                              {errors.prospectCellPhone?.type === "maxLength" &&
+                              {errors.userPhone?.type === "maxLength" &&
                                 "*El numero debe ser menor a 12 dígitos"}
                             </MessageError>
                           </ContainerField>
@@ -172,20 +245,60 @@ export const FormPerfil = () => {
                               defaultValue={
                                 dataGetUser ? dataGetUser[0].userEmail : ""
                               }
-                              {...register("prospectEmail", {
+                              {...register("userEmail", {
                                 required: true,
                                 pattern: /^\S+@\S+$/i,
                               })}
                             />
                             <FormPLabel>Email:</FormPLabel>
                             <MessageError>
-                              {errors.prospectEmail?.type === "required" &&
+                              {errors.userEmail?.type === "required" &&
                                 "*El emial es obligatorio"}
                             </MessageError>
                             <MessageError>
-                              {errors.prospectEmail?.type === "pattern" &&
+                              {errors.userEmail?.type === "pattern" &&
                                 "*Debe ingresar formato valido de email"}
                             </MessageError>
+                          </ContainerField>
+                        </div>
+                        <div className="row">
+                          <ContainerField className="form-group col-md-6">
+                            <FormPInput
+                              type="tel"
+                              className="form-control inputP"
+                              defaultValue={
+                                dataGetUser ? dataGetUser[0].userCC : ""
+                              }
+                              {...register("userCC", {
+                                required: true,
+                                minLength: 6,
+                                maxLength: 12,
+                              })}
+                            />
+                            <FormPLabel className="labelP">
+                              Cédula:
+                            </FormPLabel>
+                            <MessageError>
+                              {errors.userCC?.type === "required" &&
+                                "*La cédula es obligatorio"}
+                            </MessageError>
+                            <MessageError>
+                              {errors.userCC?.type === "minLength" &&
+                                "*La cédula debe ser mayor a 6 dígitos"}
+                            </MessageError>
+                            <MessageError>
+                              {errors.userCC?.type === "maxLength" &&
+                                "*La cédula debe ser menor a 12 dígitos"}
+                            </MessageError>
+                          </ContainerField>
+
+                          <ContainerField className="form-group col-md-6">
+                            <FormPInput
+                              type="text"
+                              className="form-control"
+                              {...register("password")}
+                            ></FormPInput>
+                            <FormPLabel>Contraseña:</FormPLabel>
                           </ContainerField>
                         </div>
                         <FormPButton
@@ -200,9 +313,9 @@ export const FormPerfil = () => {
                 </FormPCardBody>
               </ContainerForm>
             </ContainerCard>
-          )}
-        </div>
-      </ContenedorPerfil>
+          </div>
+        </ContenedorPerfil>
+      )}
     </>
   );
 };

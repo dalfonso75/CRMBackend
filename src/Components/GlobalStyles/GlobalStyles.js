@@ -68,9 +68,9 @@ export const Colors = {
   },
   form: {
     Errorcolor: "#C26C75",
-    labelColor:"#4C5967",
+    labelColor:"rgba(255,255,255,0.7)",
     labelColorFocus:`${palleteColors.colorAmarillo}`,
-    borderIpunt:"#4C5967",
+    borderIpunt:"rgba(255,255,255,0.7)",
     borderIpuntFocus:`${palleteColors.colorAmarillo}`,
   }
 };

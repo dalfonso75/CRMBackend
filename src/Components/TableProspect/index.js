@@ -24,6 +24,7 @@ const colums = [
     render:(row)=><div className={row.statusName == 'Sentado' ? 'sentado statusNameRow': 
                                   row.statusName == 'Sin asignar' ? 'sinAsignar statusNameRow':
                                   row.statusName == 'Llamada'? 'llamada statusNameRow':
+                                  row.statusName == 'Cita'? 'cita statusNameRow':
                                   row.statusName == 'Cerrado'? 'cerrado statusNameRow':
                                   row.statusName == 'statusNameRow'
                                 }>{row.statusName}</div>

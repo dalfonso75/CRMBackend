@@ -9,7 +9,7 @@ export const ContPerfilCol = styled.div`
 `;
 export const ContainerCardPerfil = styled.div`
   padding: 0 20px;
-  width:calc(100% - 200px);
+  width:calc(100% - 8vw);
   margin:0 0 auto auto;
 `;
 
@@ -31,6 +31,7 @@ export const FormPCardHeader = styled.div`
   background-color: ${Colors.cardDashboard.cardHeaderBackground};
   color: ${Colors.cardDashboard.cardHeaderColor};
   border: none;
+  border-radius:15px 15px 0 0 !important;
   padding-bottom: 0;
 `;
 export const TitleHeader = styled.h3`
@@ -43,6 +44,23 @@ export const TitleHeader = styled.h3`
 export const FormPCardBody = styled.div`
   background-color: ${Colors.cardDashboard.cardBodyBackground};
   color: ${Colors.cardDashboard.cardBodyColor};
+  border-radius:15px;
+  & img {
+    margin-bottom:10px;
+  }
+  & p {
+    text-align:center;
+    margin-top:8px;
+    font-size:14px;
+    letter-spacing:1px;
+    font-weight:600;
+    margin-bottom:0;
+    color:rgba(255,255,255,0.7);
+    &:last-child {
+      margin-bottom:10px;
+    }
+  }
+ 
 `;
 
 export const FormPInput = styled.input`

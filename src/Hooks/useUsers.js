@@ -4,18 +4,18 @@ import userService from "../services/user";
 
 export default function useUsers() {
   const { user, setUser } = useContext(Context);
-  const [stateGetUser, setStateGetUser] = useState({ loading: false, error: null, data: null});
-  const [state, setState] = useState({ loading: false, error: null, data: null});
+  const [stateGetUser, setStateGetUser] = useState({ loadingGetUser: false, errorGetUser: null, dataGetUser: null});
+  const [stateUpUser, setStateUpUse] = useState({ loadingUpUser: false, errorUpUser: null, dataUpUser: null});
   const getUser = useCallback(
     () => {
-      setStateGetUser({ loading: true, error: null });
+      setStateGetUser({ loadingGetUser: true, errorGetUser: null });
       userService.getUser(( user ? user.sign : ''), ( user ? user.userCC : ''))
         .then((data) => {
-          setStateGetUser({ loading: false, error: null, data: data.body });
+          setStateGetUser({ loadingGetUser: false, errorGetUser: null, dataGetUser: data.body });
         })
         .catch((err) => {
           console.log(err);
-          setStateGetUser({ loading: false, error: err, data: null });
+          setStateGetUser({ loadingGetUser: false, errorGetUser: err, dataGetUser: null });
         });
     },
     [setUser]
@@ -24,15 +24,30 @@ export default function useUsers() {
   const createUser = useCallback(
     (newObject) => {
       newObject.userId = user.userId;
-      setState({ loading: true, error: false });
+      // setState({ loading: true, error: false });
       userService.createUser(( user ? user.sign : ''), newObject )
         .then((data) => {
           // console.log(data);
-          setState({ loading: false, error: null, data: data });
+          // setState({ loading: false, error: null, data: data });
         })
         .catch((err) => {
           console.log(err);
-          setState({ loading: false, error: err, data: null });
+          // setState({ loading: false, error: err, data: null });
+        });
+    },
+    []
+  );
+  const updateUser = useCallback(
+    (newObject) => {
+      newObject.userId = user.userId;
+      setStateUpUse({ loadingUpUser: true, errorUpUser: false });
+      userService.updateUser(( user ? user.sign : ''), newObject )
+        .then((data) => {
+          setStateUpUse({ loadingUpUser: false, errorUpUser: null, dataUpUser: data });
+        })
+        .catch((err) => {
+          console.log(err);
+          setStateUpUse({ loadingUpUser: false, errorUpUser: err, dataUpUser: null });
         });
     },
     []
@@ -40,11 +55,16 @@ export default function useUsers() {
   
 
   return {
-    isLoadingGetUser: stateGetUser.loading,
-    hasErrorGetUser: stateGetUser.error,
-    dataGetUser: stateGetUser.data,
-    successGetUser: Boolean(state.data),
+    isLoadingGetUser: stateGetUser.loadingGetUser,
+    hasErrorGetUser: stateGetUser.errorGetUser,
+    dataGetUser: stateGetUser.dataGetUser,
+    successGetUser: Boolean(stateGetUser.dataGetUser),
+    isLoadingUpUser: stateUpUser.loadingUpUser,
+    hasErrorUpUser: stateUpUser.errorUpUser,
+    dataUpUser: stateUpUser.dataUpUser,
+    successUpUser: Boolean(stateUpUser.dataUpUser),
     getUser,
     createUser,
+    updateUser,
   };
 }
