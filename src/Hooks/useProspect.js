@@ -23,6 +23,21 @@ export default function useProspect() {
     },
     [setUser]
   );
+  const get = useCallback(
+    () => {
+      setState({ loading: true, error: null });
+      prospectService.get(( user ? user.sign : ''), (user ? user.userId : ''))
+        .then((data) => {
+          console.log(data);
+          setState({ loading: false, error: null, data: data.body });
+        })
+        .catch((err) => {
+          console.log(err);
+          setState({ loading: false, error: err, data: null });
+        });
+    },
+    [setUser]
+  );
   
   const create = useCallback(
     (newObject) => {
@@ -48,6 +63,7 @@ export default function useProspect() {
     hasError: state.error,
     data: state.data,
     success: Boolean(state.data),
+    get,
     getAll,
     create,
   };

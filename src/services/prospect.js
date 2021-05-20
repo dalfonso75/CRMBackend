@@ -10,6 +10,15 @@ const getAll = (token) => {
   const request = axios.get(`${baseUrl}/getTableList`, config);
   return request.then((response) => response.data);
 };
+const get = (token, id) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const request = axios.get(`${baseUrl}/getTableList${id}`, config);
+  return request.then((response) => response.data);
+};
 
 const create = (token, newObject) => {
   const config = {
@@ -30,4 +39,4 @@ const update = (token, id, newObject) => {
   const request = axios.put(`${baseUrl}/${id}`, newObject, config);
   return request.then((response) => response.data);
 };
-export default { getAll, create, update };
+export default { getAll, get, create, update };

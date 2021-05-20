@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from 'react'
+import Context from "../context/UserContext";
 import { TableProspect } from "../Components/TableProspect";
 
 const Home = () => {
+  const { user } = useContext(Context);
   return(
-    <TableProspect/>
+    <TableProspect role={user.roleId}/>
   ) 
 };
 

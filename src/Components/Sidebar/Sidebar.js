@@ -6,7 +6,7 @@ import logo from '../../assets/img/logoEyetrade.png'
 
 import useUser from '../../Hooks/useUser'
 
-export const Sidebar = ({showSide}) => {
+export const Sidebar = ({showSide, role}) => {
     const dataUser = JSON.parse(window.localStorage.getItem('user'));
     const {isLogged, logout} = useUser();
     return (
@@ -24,8 +24,8 @@ export const Sidebar = ({showSide}) => {
                     </InternRowPerfil>
                 </Linkperfil>
             </ContainerRowPerfil>
-                
-            <Sideul>
+            {role == 'D_hTgWm55CoUMacxbNWvO' ? (
+                <Sideul>
                 <h3>General</h3>
                 <div className="row">
                     <li>
@@ -41,10 +41,65 @@ export const Sidebar = ({showSide}) => {
                 <h3>Comerciales</h3>
                 <div className="row">
                     <li>
-                        <Link to="/contact"> <AiOutlineDatabase/>Comerciales</Link>
+                        <Link to="/comercial"> <AiOutlineDatabase/>Comerciales</Link>
                     </li>
                 </div>
             </Sideul>
+            ): 
+            role == 'zr_Cj9nB5LkJx-j_MVcdg' ? (
+            <Sideul>
+                <h3>General</h3>
+                <div className="row">
+                    <li>
+                        <Link to="/home"> <AiOutlineCluster/>Dashboard</Link>
+                    </li>
+                </div>
+                <h3>Prospectos</h3>
+                <div className="row">
+                    <li>
+                        <Link to="/prospect"> <AiOutlineUser/>Prospectos</Link>
+                    </li>
+                </div>
+                {/* <h3>Comerciales</h3>
+                <div className="row">
+                    <li>
+                        <Link to="/contact"> <AiOutlineDatabase/>Comerciales</Link>
+                    </li>
+                </div> */}
+            </Sideul>):
+            role == "-NUhl4ekJwl_FuY5mhA62" ? (
+            <Sideul>
+                <h3>Prospectos</h3>
+                <div className="row">
+                    <li>
+                        <Link to="/"> <AiOutlineUser/>Prospectos</Link>
+                    </li>
+                </div>
+                {/* <h3>Comerciales</h3>
+                <div className="row">
+                    <li>
+                        <Link to="/contact"> <AiOutlineDatabase/>Comerciales</Link>
+                    </li>
+                </div> */}
+            </Sideul>):
+            role == "FJ2A4JD7z92rkR6-8qmyg" ? (
+                <Sideul>
+                    <h3>Prospectos</h3>
+                    <div className="row">
+                        <li>
+                            <Link to="/"> <AiOutlineUser/>Prospectos</Link>
+                        </li>
+                    </div>
+                    {/* <h3>Comerciales</h3>
+                    <div className="row">
+                        <li>
+                            <Link to="/contact"> <AiOutlineDatabase/>Comerciales</Link>
+                        </li>
+                    </div> */}
+                </Sideul>):
+            ''
+            }
+            
             <CerraSesion>
                 <div className="row">
                     <a onClick={logout}><AiOutlineExport/> Cerrar Sesión </a>
