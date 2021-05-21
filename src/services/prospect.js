@@ -16,7 +16,7 @@ const get = (token, id) => {
       Authorization: `Bearer ${token}`,
     },
   };
-  const request = axios.get(`${baseUrl}/getTableList${id}`, config);
+  const request = axios.get(`${baseUrl}/getTableList/${id}`, config);
   return request.then((response) => response.data);
 };
 

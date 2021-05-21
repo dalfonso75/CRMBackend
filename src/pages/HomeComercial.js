@@ -1,8 +1,9 @@
 import React from "react";
+import { TableComercial } from '../Components/TableProspect/TableComercial';
 
 const HomeComercial = () => {
   return(
-    <div>Home Comercial</div>
+    <TableComercial/>
   ) 
 };
 
