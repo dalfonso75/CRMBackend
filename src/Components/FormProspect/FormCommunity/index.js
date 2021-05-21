@@ -5,14 +5,10 @@ import { useForm } from "react-hook-form";
 import { ToastContainer, toast} from "react-toastify";
 import PageLoading from "../../PageLoadign/PageLoading";
 import { FormFormat } from '../FormFormat'
-export const FormAdmin = ({role}) => {
+export const FormCommunity = ({role}) => {
   const [itemsForm, setItemsForm] = useState(false);
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const { create, hasError, isLoading, data } = useProspect();
-  const { getComercial, hasErrorComercial, isLoadingComercial, dataComercial } = useComercialGet();
-  useEffect(()=>{
-    getComercial();
-  }, [])
   useEffect(() => {
     if (hasError) toast.error(`'🚀 El número de teléfono ya existe!'`, {
       position: "top-right",
@@ -49,37 +45,15 @@ export const FormAdmin = ({role}) => {
           "prospectCellPhone": data.prospectCellPhone, 
           "prospectEmail": data.prospectEmail, 
           "observation": data.observation, 
-          "statusId": data.statusId,
+          "statusId": "7SbAE5zx27Prfpl92pOFP",
           "digitalSourceId": "H9Ee6DQ7cumAnjHmHkJfO",
-          "userId" : data.userId,
+          "userId" : "j64Jq329nj4g1F3ATosQs",
         }
       };
       console.log(data);
       create(data);
     }else {
-      data = {
-        "userId": "",
-        "object":{
-          "prospectName": data.prospectName, 
-          "prospectLastName": data.prospectLastName,
-          "prospectCellPhone": data.prospectCellPhone, 
-          "prospectEmail": data.prospectEmail, 
-          "observation": data.observation, 
-          "statusId": data.statusId,
-          "digitalSourceId": "H9Ee6DQ7cumAnjHmHkJfO",
-          "userId" : data.userId,
-          "children": data.children,
-          "employmentStatus": data.employmentStatus,
-          "maritalStatusId": data.maritalStatusId,
-          "occupation": data.occupation,
-          "prospectAge": data.prospectAge,
-          "salaryRangeId": data.salaryRangeId,
-          "sourceDescription": data.sourceDescription,
-          "tradingExperience": data.tradingExperience,
-        }
-      };
       console.log(data);
-      create(data);
     }
   };
   return (
@@ -96,7 +70,7 @@ export const FormAdmin = ({role}) => {
         pauseOnHover
       />
       {isLoading && <PageLoading />}
-      {!isLoading && !isLoadingComercial && (
+      {!isLoading && (
         <FormFormat 
         itemsForm={itemsForm} 
         setItemsForm={setItemsForm} 
@@ -104,7 +78,6 @@ export const FormAdmin = ({role}) => {
         handleSubmit={handleSubmit}
         errors={errors} 
         onSubmit={onSubmit} 
-        dataComercial={dataComercial}
         role={role}
         />
       )}

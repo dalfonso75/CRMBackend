@@ -64,8 +64,8 @@ function App() {
         <Sidebar showSide={showSide} role={user.roleId} />
         <div className="main" onClick={() => {setShowSide(false);}}>
           <Switch>
-            <Route path="/" exact={true} component={ProspectCommunity} />
-            <Route path="/home" exact={true} component={ProspectCommunity} />
+            <Route path="/" exact={true} component={Prospect} />
+            <Route path="/home" exact={true} component={Prospect} />
           </Switch>
         </div>
       </Router>
