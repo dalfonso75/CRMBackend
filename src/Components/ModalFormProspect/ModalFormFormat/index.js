@@ -14,20 +14,17 @@ import {
   FormPInput,
   TitleHeader,
 } from "./styles";
-export const FormFormat = ({
-  itemsForm,
-  setItemsForm,
+export const ModalFormFormat = ({
   register,
   handleSubmit,
   errors,
   onSubmit,
-  dataComercial,
-  role,
+  statusProspect,
 }) => {
   return (
     <>
       <ContainerCard className="row d-flex justify-content-center">
-        <ContainerForm className="card col-md-6">
+        <ContainerForm className="card col-md-12">
           <FormPCardHeader className="card-header">
             <TitleHeader>Formulario Registro Prospecto</TitleHeader>
           </FormPCardHeader>
@@ -36,151 +33,47 @@ export const FormFormat = ({
               <div className="col">
                 <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
                   <div className="row">
-                    <ContainerField className="form-group col-md-6">
-                      <FormPInput
-                        type="text"
+                    <ContainerField className="form-group">
+                      <FormPSelect
+                        {...register("statusId", { required: true })}
                         className="form-control"
-                        {...register("prospectName", {
-                          required: true,
-                          maxLength: 80,
-                        })}
-                      ></FormPInput>
-                      <FormPLabel>Nombres:</FormPLabel>
-                      <MessageError>
-                        {errors.prospectName?.type === "required" &&
-                          "*El nombre es obligatorio"}
-                      </MessageError>
-                    </ContainerField>
-                    <ContainerField className="form-group col-md-6">
-                      <FormPInput
-                        type="text"
-                        className="form-control"
-                        {...register("prospectLastName", {
-                          required: true,
-                          maxLength: 80,
-                        })}
-                      />
-                      <FormPLabel>Apellidos:</FormPLabel>
-                      <MessageError>
-                        {errors.prospectLastName?.type === "required" &&
-                          "*El apellido es obligatorio"}
-                      </MessageError>
-                    </ContainerField>
-                  </div>
-                  <div className="row">
-                    <ContainerField className="form-group col-md-6">
-                      <FormPInput
-                        type="tel"
-                        className="form-control inputP"
-                        {...register("prospectCellPhone", {
-                          required: true,
-                          minLength: 6,
-                          maxLength: 12,
-                        })}
-                      />
-                      <FormPLabel className="labelP">Teléfono:</FormPLabel>
-                      <MessageError>
-                        {errors.prospectCellPhone?.type === "required" &&
-                          "*El celular es obligatorio"}
-                      </MessageError>
-                      <MessageError>
-                        {errors.prospectCellPhone?.type === "minLength" &&
-                          "*El numero debe ser mayor a 6 dígitos"}
-                      </MessageError>
-                      <MessageError>
-                        {errors.prospectCellPhone?.type === "maxLength" &&
-                          "*El numero debe ser menor a 12 dígitos"}
-                      </MessageError>
-                    </ContainerField>
-                    <ContainerField className="form-group col-md-6">
-                      <FormPInput
-                        className="form-control"
-                        {...register("prospectEmail", {
-                          required: true,
-                          pattern: /^\S+@\S+$/i,
-                        })}
-                      />
-                      <FormPLabel>Email:</FormPLabel>
-                      <MessageError>
-                        {errors.prospectEmail?.type === "required" &&
-                          "*El emial es obligatorio"}
-                      </MessageError>
-                      <MessageError>
-                        {errors.prospectEmail?.type === "pattern" &&
-                          "*Debe ingresar formato valido de email"}
-                      </MessageError>
-                    </ContainerField>
-                  </div>
-                  {role == "D_hTgWm55CoUMacxbNWvO" ||
-                  role == "zr_Cj9nB5LkJx-j_MVcdg" ? (
-                    <div className="row">
-                      <ContainerField className="form-group">
-                        <FormPSelect
-                          onClick={(e) => {
-                            if (e.target.value == "ScE_14_PKWYSA4PHa-u6y") {
-                              setItemsForm(true);
-                            } else {
-                              setItemsForm(false);
-                            }
-                          }}
-                          {...register("statusId", { required: true })}
-                          className="form-control"
-                        >
-                          <option value="1" disabled selected></option>
-                          <option value="zDc_TzqP7g5n-8WyH_TL9">Inicio</option>
+                      >
+                        {/* <option value="1" disabled selected></option> */}
+                        {statusProspect == "zDc_TzqP7g5n-8WyH_TL9"
+                         ? (
                           <option value="hjVZQez4R60tY6DBP8Sm-">Llamada</option>
-                          <option value="ScE_14_PKWYSA4PHa-u6y">
-                            Cita
-                          </option>
-                          {/* <option value="sDHVFGS-sjSzVNLIdZyvY">Sentado</option>
-                          <option value="kO9lZo_OsMaHdVA5dCClf">Cerrado</option> */}
-                        </FormPSelect>
-                        <FormPLabel>Estado de proceso:</FormPLabel>
-                        <MessageError>
-                          {errors.statusId?.type === "required" &&
-                            "*El estado es obligatorio"}
-                        </MessageError>
-                      </ContainerField>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                  {role == "D_hTgWm55CoUMacxbNWvO" ? (
-                    <div className="row">
-                      <ContainerField className="form-group">
-                        <FormPSelect
-                          {...register("userId", { required: true })}
-                          className="form-control"
-                        >
-                          {dataComercial
-                            ? dataComercial.map((dataComercial) => (
-                                <option
-                                  key={dataComercial.userId}
-                                  value={dataComercial.userId}
-                                >
-                                  {dataComercial.userName}
-                                </option>
-                              ))
-                            : ""}
-                        </FormPSelect>
-                        <FormPLabel>Asignar Comercial</FormPLabel>
-                        <MessageError>
-                          {errors.userId?.type === "required" &&
-                            "*Asignar Comercial es obligatorio"}
-                        </MessageError>
-                      </ContainerField>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                  <FcPlus
-                    className={itemsForm ? "active" : ""}
-                    onClick={() => {
-                      setItemsForm(!itemsForm);
-                    }}
-                  />
-                  {itemsForm && (
-                    <FormPAddItems>
+                        ) : (
+                          ""
+                        )}
+                        {statusProspect == "hjVZQez4R60tY6DBP8Sm-" 
+                        ? (
+                          <option value="ScE_14_PKWYSA4PHa-u6y">Cita</option>
+                        ) : (
+                          ""
+                        )}
+                        {statusProspect == "ScE_14_PKWYSA4PHa-u6y" 
+                        ? (
+                          <option value="sDHVFGS-sjSzVNLIdZyvY">Sentado</option>
+                        ) : (
+                          ""
+                        )}
+                        {statusProspect == "sDHVFGS-sjSzVNLIdZyvY" || 
+                        statusProspect == "kO9lZo_OsMaHdVA5dCClf" 
+                        ? (
+                          <option value="kO9lZo_OsMaHdVA5dCClf">Cerrado</option>
+                        ) : (
+                          ""
+                        )}
+                      </FormPSelect>
+                      <FormPLabel>Estado de proceso:</FormPLabel>
+                      <MessageError>
+                        {errors.statusId?.type === "required" &&
+                          "*El estado es obligatorio"}
+                      </MessageError>
+                    </ContainerField>
+                  </div>
+                  {statusProspect == "hjVZQez4R60tY6DBP8Sm-" ? (
+                    <>
                       <div className="row">
                         <ContainerField className="form-group col-md-6">
                           <FormPInput
@@ -291,8 +184,76 @@ export const FormFormat = ({
                           </FormPLabel>
                         </ContainerField>
                       </div>
-                    </FormPAddItems>
+                    </>
+                  ) : (
+                    ""
                   )}
+
+                  {/* CITA */}
+                  {statusProspect == "sDHVFGS-sjSzVNLIdZyvY" ? (
+                    <>
+                      <div className="row">
+                        <ContainerField className="form-group col-md-6">
+                          <FormPInput
+                            type="text"
+                            className="form-control"
+                            {...register("address")}
+                          />
+                          <FormPLabel>Dirección:</FormPLabel>
+                        </ContainerField>
+                        <ContainerField className="form-group col-md-6">
+                          <FormPInput
+                            type="text"
+                            className="form-control"
+                            {...register("prospectCC")}
+                          />
+                          <FormPLabel>Cédula:</FormPLabel>
+                        </ContainerField>
+                      </div>
+                      <div className="row">
+                        <ContainerField className="form-group col-md-6">
+                          <FormPInput
+                            type="text"
+                            className="form-control"
+                            {...register("mentor")}
+                          />
+                          <FormPLabel>Mentor:</FormPLabel>
+                        </ContainerField>
+                        
+                        <ContainerField className="form-group col-md-6">
+                          <FormPInput
+                            type="text"
+                            className="form-control"
+                            {...register("trainingType")}
+                          />
+                          <FormPLabel>Tipo de entrenamiento:</FormPLabel>
+                        </ContainerField>
+                      </div>
+                      <div className="row">
+
+                        <ContainerField className="form-group col-md-6">
+                          <FormPInput
+                            type="text"
+                            className="form-control"
+                            {...register("totalValue")}
+                          />
+                          <FormPLabel>Valor total del entrenamiento:</FormPLabel>
+                        </ContainerField>
+
+                        <ContainerField className="form-group col-md-6">
+                          <FormPInput
+                            type="text"
+                            className="form-control"
+                            {...register("contractNumber")}
+                          />
+                          <FormPLabel>Número de contrato:</FormPLabel>
+                        </ContainerField>
+                      </div>
+                    </>
+                  ) : (
+                    ""
+                  )}
+                  {/* Fin Cita */}
                   <div className="row">
                     <ContainerField className="form-group">
                       <FormPInput

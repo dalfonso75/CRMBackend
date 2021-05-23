@@ -30,13 +30,13 @@ const create = (token, newObject) => {
   return request.then((response) => response.data);
 };
 
-const update = (token, id, newObject) => {
+const update = (token, newObject) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
-  const request = axios.put(`${baseUrl}/${id}`, newObject, config);
+  const request = axios.put(baseUrl, newObject, config);
   return request.then((response) => response.data);
 };
 export default { getAll, get, create, update };

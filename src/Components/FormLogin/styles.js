@@ -14,7 +14,7 @@ export const TitleForm = styled.h2`
   color:${Colors.cardLogin.color};
 `
 export const Login = styled.div`
-  background-color: ${Colors.background.login};
+  background-color: #161C24;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -36,9 +36,9 @@ export const ContenedorForm = styled.div`
   max-width:400px;
   width:350px;
   padding:40px;
-  background-color: ${Colors.cardLogin.background};
+  background-color: #222B36;
   border-radius:15px;
-  box-shadow: 0px 8px 25px 1px ${Colors.cardLogin.background};
+  box-shadow: 0px 0px 15px 0px RGBA(253,169,45,0.7);
 `
 
 export const Fieldform = styled.div`
@@ -48,7 +48,7 @@ export const Inputform = styled.input`
   /* width:95%;  */
   font-size:14px;
   padding:8px;
-  background-color: ${Colors.cardLogin.inputBackground};
+  background-color: #161C24;
   border-radius:8px;
   border:none;
   margin-bottom:20px;
@@ -58,12 +58,12 @@ export const Inputform = styled.input`
 export const Labelform = styled.label`
   font-size:10px;
   padding:4px;
-  color:${Colors.cardLogin.inputBackground};
+  color:#FFF;
   text-transform:uppercase;
   text-align:left;
 `
 export const Buttonform = styled.button`
-  background-color:${Colors.cardLogin.botonBackground};
+  background-color:#161C24;
   width:50%;
   margin:10px auto 0 auto;
   border:none;

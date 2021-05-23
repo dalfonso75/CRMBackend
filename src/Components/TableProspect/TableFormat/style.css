@@ -95,6 +95,10 @@
     background-color: #FF4842;
     color: #FFFFFF;
 }
+.inicio {
+    background-color: #f06d69;
+    color: #FFFFFF;
+}
 .llamada {
     background-color: #2D64E3;
     color: #FFFFFF;
@@ -103,6 +107,7 @@
     background-color: #5059C9;
     color: #FFFFFF;
 }
+
 .cerrado {
     background-color: #54D62C;
     color: #222B36;

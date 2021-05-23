@@ -55,6 +55,25 @@ export default function useProspect() {
     },
     []
   );
+
+  const update = useCallback(
+    (newObject) => {
+      newObject.userId = user.userId;
+      newObject.object.userId = user.userId;
+      setState({ loading: true, error: false });
+      console.log(newObject);
+      prospectService.update(( user ? user.sign : ''), newObject )
+        .then((data) => {
+          console.log(data);
+          setState({ loading: false, error: null, data: data });
+        })
+        .catch((err) => {
+          console.log(err);
+          setState({ loading: false, error: err, data: null });
+        });
+    },
+    []
+  );
   
 
   return {
@@ -66,5 +85,6 @@ export default function useProspect() {
     get,
     getAll,
     create,
+    update,
   };
 }

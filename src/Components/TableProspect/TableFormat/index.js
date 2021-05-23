@@ -3,32 +3,9 @@ import MaterialTable from "material-table";
 import PageLoading from "../../PageLoadign/PageLoading";
 import { ContainerCard, ContainerTable, TableCardHeader, TitleHeader, TableCardBody } from "./styles";
 import './style.css'
-const colums = [
-  {
-    title: "Nombre",
-    field: "prospectName",
-  },
-  {
-    title: "LastName",
-    field: "prospectLastName",
-  },
-  {
-    title: "Télefono",
-    field: "prospectCellphone",
-  },
-  {
-    title: "Estado",
-    field: "statusName",
-    render:(row)=><div className={row.statusName == 'Sentado' ? 'sentado statusNameRow': 
-                                  row.statusName == 'Sin asignar' ? 'sinAsignar statusNameRow':
-                                  row.statusName == 'Llamada'? 'llamada statusNameRow':
-                                  row.statusName == 'Cita'? 'cita statusNameRow':
-                                  row.statusName == 'Cerrado'? 'cerrado statusNameRow':
-                                  row.statusName == 'statusNameRow'
-                                }>{row.statusName}</div>
-  },
-];
-export const TableFormat = ({isLoading, success, datos, optionsAction }) => {
+
+export const TableFormat = ({isLoading, success, datos, optionsAction, colums}) => {
+  
   return (
     <>
       {isLoading && <PageLoading />}

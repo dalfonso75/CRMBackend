@@ -1,0 +1,31 @@
+.modalform{
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(6px);
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+.modalform-contenido{
+    position: relative;
+    border-radius: 15px;
+    background-color: rgba(23, 28, 36, 0.8);
+    width: 50vw;
+    padding: 0px 20px 10px 20px;
+    /* height: 80vh; */
+    margin: 10vh auto;
+}
+
+.modalform-close {
+    color: aliceblue;
+    display: block;
+    margin: 10px 0px; 
+    outline: none;
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    padding: 0;
+
+}
